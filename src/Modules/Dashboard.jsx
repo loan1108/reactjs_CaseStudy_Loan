@@ -18,6 +18,7 @@ export default function Dashboard() {
     fetchProducts();
     fetchProductsByPage();
     changeCategory();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [choosePage, chooseCategory]);
   async function fetchProducts() {
     setLoading(true)

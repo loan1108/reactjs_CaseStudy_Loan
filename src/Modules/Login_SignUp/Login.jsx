@@ -6,8 +6,10 @@ import routes from "../../routes";
 import "./login.css";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import Loading from "../../Components/Loading";
 export default function Login() {
   const [loginUser, setLoginUser] = useState({ userName: "", password: "" });
+  const [loading,setLoading] = useState(false);
   useEffect(() => {
     if (JSON.parse(window.localStorage.getItem("loginUser"))) {
       setLoginUser({
@@ -18,17 +20,21 @@ export default function Login() {
     } else {
       setLoginUser({ ...loginUser });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const navigate = useNavigate();
   return (
     <div style={{ margin: "50px" }}>
+    {loading&&<Loading/>}
       <Formik
         initialValues={loginUser}
         enableReinitialize
         validationSchema={loginUserSchema}
         onSubmit={(values) => {
           async function fetchLoginUser() {
+            setLoading(true)
             const data = await axiosClient.get("/users");
+            setLoading(false)
             const index =
               data &&
               data.findIndex(

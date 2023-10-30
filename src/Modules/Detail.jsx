@@ -24,6 +24,7 @@ export default function Detail() {
   useEffect(() => {
     fetchProduct();
     fetchCartProducts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [productId]);
   const loginUser = JSON.parse(window.localStorage.getItem("loginUser"));
   async function fetchProduct() {

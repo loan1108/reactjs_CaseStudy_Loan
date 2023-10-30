@@ -15,6 +15,7 @@ export default function BuyingHistory() {
       const data = await axiosClient.get(`users/${userId}?_embed=receivers`);
       setLoading(false);
       setBoughtProducts({ ...data });
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }
     fetchProduct();
   }, [userId]);

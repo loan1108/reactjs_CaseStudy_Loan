@@ -253,6 +253,26 @@
           "productInventory": 2
         }
       ]
+    },
+    {
+      "id": "5f8bfc97-4849-4d9f-9624-6415f0c10094",
+      "userId": "1",
+      "boughtTime": "Mon, 30 Oct 2023 12:46:26 GMT",
+      "name": "test_1",
+      "phone": "2424254",
+      "address": "Hà Nội",
+      "payment": "Tiền mặt",
+      "boughtProducts": [
+        {
+          "id": "504e1fe8-9046-47c9-ad03-f889b369a988",
+          "quantity": 1,
+          "userId": "1",
+          "productId": "11",
+          "productPrice": 46750,
+          "productTitle": "Lão Hạc",
+          "productInventory": 10
+        }
+      ]
     }
   ],
   "products": [
@@ -352,7 +372,7 @@
       "title": "Lão Hạc",
       "author": "Nam Cao",
       "price": 46750,
-      "inventory": 10,
+      "inventory": 9,
       "category": "vietNam"
     },
     {

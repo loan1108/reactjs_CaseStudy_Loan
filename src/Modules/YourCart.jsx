@@ -16,6 +16,7 @@ export default function YourCart() {
       setCartProducts([...data]);
     }
     fetchCartProducts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const loginUser = JSON.parse(window.localStorage.getItem("loginUser"));
   let total = 0;

@@ -7,17 +7,20 @@ import routes from "../../routes";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./signup.css";
+import Loading from "../../Components/Loading";
 export default function SignUp() {
   const navigate = useNavigate();
-  const [signUpUser] = useState({
+  const [signUpUser,] = useState({
     id: "",
     userName: "",
     address: "",
     password: "",
     phone: "",
   });
+  const [loading,setLoading] = useState(false)
   return (
     <div style={{ margin: "50px" }}>
+      {loading &&<Loading/>}
       <Formik
         initialValues={signUpUser}
         enableReinitialize
@@ -25,7 +28,9 @@ export default function SignUp() {
         onSubmit={(values) => {
           const userId = uuidv4();
           async function createUser() {
+            setLoading(true)
             await axiosClient.post("/users", { ...values, id: userId });
+            setLoading(false)
             window.localStorage.setItem(
               "loginUser",
               JSON.stringify({ ...values, id: userId })

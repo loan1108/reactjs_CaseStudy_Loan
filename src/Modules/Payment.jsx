@@ -36,6 +36,7 @@ export default function Payment() {
       });
     }
     fetchUser();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
   return (
     <div style={{ margin: "50px" }}>
@@ -58,7 +59,7 @@ export default function Payment() {
             }
             addReceiver();
             const newReceiver = { ...receiver };
-            newReceiver.boughtProducts.map((product) => {
+            newReceiver.boughtProducts.forEach((product) => {
               axiosClient.delete(`/cartProducts/${product.id}`);
               axiosClient.patch(`/products/${product.productId}`, {
                 inventory: product.productInventory - product.quantity,
