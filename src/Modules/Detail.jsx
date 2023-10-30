@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Header from "../Components/Header"
+import Header from "../Components/Header";
 import { v4 as uuidv4 } from "uuid";
 import axiosClient from "../api/axiosClient";
 import { useNavigate } from "react-router-dom";
 import routes from "../routes";
+import Loading from "../Components/Loading";
 export default function Detail() {
   const navigate = useNavigate();
-  const {productId} = useParams();
+  const { productId } = useParams();
   const [quantity, setQuantity] = useState(0);
   const [cartProducts, setCartProducts] = useState([]);
   const [product, setProduct] = useState({
@@ -19,19 +20,24 @@ export default function Detail() {
     inventory: 0,
     category: "",
   });
-
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     fetchProduct();
     fetchCartProducts();
   }, [productId]);
-  const loginUser = JSON.parse(window.localStorage.getItem("loginUser"))
+  const loginUser = JSON.parse(window.localStorage.getItem("loginUser"));
   async function fetchProduct() {
+    setLoading(true)
     const data = await axiosClient.get(`/products/${productId}`);
+    setLoading(false)
     setProduct(data);
   }
   async function fetchCartProducts() {
+    setLoading(true);
     const data = await axiosClient.get("/cartProducts");
+    setLoading(false)
     setCartProducts([...data]);
+
   }
   function increaseQuantity() {
     if (quantity < product.inventory) {
@@ -53,32 +59,37 @@ export default function Detail() {
         quantity: quantity,
         userId: loginUser.id,
         productId: product.id,
-        productPrice:product.price,
-        productTitle:product.title,
-        productInventory: product.inventory
+        productPrice: product.price,
+        productTitle: product.title,
+        productInventory: product.inventory,
       };
       setCartProducts([...cartProducts, { ...newCartProduct }]);
       async function addToCartProductsList() {
+        setLoading(true)
         await axiosClient.post("/cartProducts", {
           ...newCartProduct,
         });
-        navigate(routes.web.cart)
+        setLoading(false)
+        navigate(routes.web.cart);
       }
       addToCartProductsList();
     } else {
       const cartProductId = cartProducts[index].id;
       async function updateCartProductList() {
+        setLoading(true)
         await axiosClient.patch(`/cartProducts/${cartProductId}`, {
           quantity: quantity,
         });
-        navigate(routes.web.cart)
+        setLoading(false)
+        navigate(routes.web.cart);
       }
       updateCartProductList();
     }
   }
   return (
     <div style={{ margin: "50px" }}>
-      <Header user={loginUser}/>
+      {loading&&<Loading/>}
+      <Header user={loginUser} />
       <div className="container" style={{ height: "100px", marginTop: "50px" }}>
         <div className="row">
           <div className="col">
@@ -139,13 +150,18 @@ export default function Detail() {
             <div style={{ marginTop: "30px" }}>
               <button
                 type="button"
-                className={`btn btn-${product.inventory!==0?"primary":"warning"}`}
-                style={product.inventory===0?{color:"red",fontWeight:"bold"}:{color:"black"}}
+                className={`btn btn-${
+                  product.inventory !== 0 ? "primary" : "warning"
+                }`}
+                style={
+                  product.inventory === 0
+                    ? { color: "red", fontWeight: "bold" }
+                    : { color: "black" }
+                }
                 disabled={quantity === 0 ? "disabled" : ""}
                 onClick={() => addToCart(product)}
               >
-                {product.inventory !==0?"Add to cart":"Sold out"}
-                
+                {product.inventory !== 0 ? "Add to cart" : "Sold out"}
               </button>
             </div>
           </div>

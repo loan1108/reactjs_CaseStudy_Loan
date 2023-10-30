@@ -4,37 +4,42 @@ import Header from "../Components/Header";
 import axiosClient from "../api/axiosClient";
 import { Link } from "react-router-dom";
 import routes from "../routes";
+import Loading from "../Components/Loading";
 export default function Dashboard() {
   const [products, setProducts] = useState([]);
   const [searchProduct, setSearchProduct] = useState({ item: "" });
   const loginUser = JSON.parse(window.localStorage.getItem("loginUser"));
-  const [choosePage,setChoosePage] = useState(1);
-  const [chooseCategory, setChooseCategory]= useState("all");
-  const [totalPages,setTotalPages] = useState(null);
+  const [choosePage, setChoosePage] = useState(1);
+  const [chooseCategory, setChooseCategory] = useState("all");
+  const [totalPages, setTotalPages] = useState(null);
+  const[loading, setLoading] = useState(false);
   useEffect(() => {
+    
     fetchProducts();
     fetchProductsByPage();
-    changeCategory()
-  }, [choosePage,chooseCategory]);
+    changeCategory();
+  }, [choosePage, chooseCategory]);
   async function fetchProducts() {
+    setLoading(true)
     const data = await axiosClient.get(`/products`);
-    setTotalPages(Math.ceil(data.length/10))
+    setLoading(false)
+    setTotalPages(Math.ceil(data.length / 10));
     setProducts([...data]);
   }
   function handleCategory(e) {
-    // const category = e.target.getAttribute("category");
-    setChooseCategory(e.target.getAttribute("category"))
-    
+    setChooseCategory(e.target.getAttribute("category"));
   }
-  function changeCategory(){
+  function changeCategory() {
     if (chooseCategory === "all") {
       fetchProducts();
     } else {
       async function fetchProductsByCategory() {
+        setLoading(true)
         const data = await axiosClient.get(
           `/products?category_like=${chooseCategory}`
         );
-        setTotalPages(Math.ceil(data.length/10))
+        setLoading(false)
+        setTotalPages(Math.ceil(data.length / 10));
         setProducts([...data]);
       }
       fetchProductsByCategory();
@@ -46,29 +51,35 @@ export default function Dashboard() {
   function handleSubmit(e) {
     e.preventDefault();
     async function fetchSearchProducts() {
+      setLoading(true);
       const data = await axiosClient.get(`/products?q=${searchProduct.item}`);
+     setLoading(false)
       setProducts([...data]);
     }
     fetchSearchProducts();
   }
-  async function fetchProductsByPage(){
-    const data = await axiosClient.get(`/products?_page=${choosePage}&_limit=10`);
-    setProducts([...data])
+  async function fetchProductsByPage() {
+    setLoading(true)
+    const data = await axiosClient.get(
+      `/products?_page=${choosePage}&_limit=10`
+    );
+    setLoading(false)
+    setProducts([...data]);
   }
-  function changePage(e){
-    setChoosePage(+e.target.getAttribute("page"))
-    fetchProductsByPage()
+  function changePage(e) {
+    setChoosePage(+e.target.getAttribute("page"));
+    fetchProductsByPage();
   }
   function createPage() {
     const pages = [];
     for (let i = 1; i <= totalPages; i++) {
       pages.push(
         <li
-          className={`page-item ${choosePage===i?"active":""}`}
+          className={`page-item ${choosePage === i ? "active" : ""}`}
           style={{ cursor: "pointer" }}
           key={i}
         >
-          <span className={"page-link"}  page={i} onClick={changePage}>
+          <span className={"page-link"} page={i} onClick={changePage}>
             {i}
           </span>
         </li>
@@ -78,6 +89,7 @@ export default function Dashboard() {
   }
   return (
     <div style={{ margin: "50px" }}>
+      {loading&&<Loading/>}
       <Header user={loginUser} />
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
@@ -95,12 +107,21 @@ export default function Dashboard() {
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li style={{ cursor: "pointer" }} className={`nav-item ${chooseCategory==="all"?"active":""}`} category="all" onClick={handleCategory}>
+              <li
+                style={{ cursor: "pointer" }}
+                className={`nav-item ${
+                  chooseCategory === "all" ? "active" : ""
+                }`}
+                category="all"
+                onClick={handleCategory}
+              >
                 Tất cả
               </li>
               <li
                 style={{ cursor: "pointer" }}
-                className={`nav-item ${chooseCategory==="aboard"?"active":""}`}
+                className={`nav-item ${
+                  chooseCategory === "aboard" ? "active" : ""
+                }`}
                 category="aboard"
                 onClick={handleCategory}
               >
@@ -108,14 +129,15 @@ export default function Dashboard() {
               </li>
 
               <li
-              style={{ cursor: "pointer" }}
-                className={`nav-item ${chooseCategory==="vietNam"?"active":""}`}
+                style={{ cursor: "pointer" }}
+                className={`nav-item ${
+                  chooseCategory === "vietNam" ? "active" : ""
+                }`}
                 category="vietNam"
                 onClick={handleCategory}
               >
                 Văn học Việt Nam
               </li>
-
             </ul>
             <form className="d-flex" onSubmit={handleSubmit}>
               <input

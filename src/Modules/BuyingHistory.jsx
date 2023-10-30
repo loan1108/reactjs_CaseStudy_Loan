@@ -4,20 +4,25 @@ import { useParams } from "react-router-dom";
 import axiosClient from "../api/axiosClient";
 import { Link } from "react-router-dom";
 import routes from "../routes";
-
+import Loading from "../Components/Loading";
 export default function BuyingHistory() {
   const { userId } = useParams();
   const [boughtProducts, setBoughtProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     async function fetchProduct() {
+      setLoading(true);
       const data = await axiosClient.get(`users/${userId}?_embed=receivers`);
+      setLoading(false);
       setBoughtProducts({ ...data });
     }
     fetchProduct();
   }, [userId]);
   return (
-    <div style={{margin:"50px"}}>
-    {boughtProducts&&<Header user={boughtProducts}/>}
+    <div style={{ margin: "50px" }}>
+      {loading && <Loading />}
+      {/* {boughtProducts&&<Header user={boughtProducts}/>} */}
+      <Header user={boughtProducts} />
       <div>
         <h1>Lịch sử mua hàng</h1>
         <table className="table">
@@ -41,13 +46,19 @@ export default function BuyingHistory() {
                       <td>{boughtProduct.productTitle}</td>
                       <td>{boughtProduct.quantity}</td>
                       <td>
-                        {`${(boughtProduct.quantity + boughtProduct.productPrice).toLocaleString()} VNĐ`}
+                        {`${(
+                          boughtProduct.quantity + boughtProduct.productPrice
+                        ).toLocaleString()} VNĐ`}
                       </td>
+                      <td>{receiver.boughtTime}</td>
                       <td>
-                        {receiver.boughtTime}
-                      </td>
-                      <td>
-                        <Link to={`${routes.web.detail}/${boughtProduct.productId}`}className="btn btn-primary" type="button">Mua lại</Link>
+                        <Link
+                          to={`${routes.web.detail}/${boughtProduct.productId}`}
+                          className="btn btn-primary"
+                          type="button"
+                        >
+                          Mua lại
+                        </Link>
                       </td>
                     </tr>
                   ))

@@ -233,6 +233,26 @@
           "productInventory": 3
         }
       ]
+    },
+    {
+      "id": "3aad7c51-0d95-419b-9e5c-8e67c8bdad30",
+      "userId": "91b610d0-290e-4a07-89c2-3c67ff0e904b",
+      "boughtTime": "Mon, 30 Oct 2023 08:31:20 GMT",
+      "name": "test_2",
+      "phone": 123242425,
+      "address": "Cầu giấy, Hà nội",
+      "payment": "Tiền mặt",
+      "boughtProducts": [
+        {
+          "id": "e21230e0-10ba-4d30-8b97-6a2a594c8571",
+          "quantity": 1,
+          "userId": "91b610d0-290e-4a07-89c2-3c67ff0e904b",
+          "productId": "1",
+          "productPrice": 80750,
+          "productTitle": "AQ chính truyện",
+          "productInventory": 2
+        }
+      ]
     }
   ],
   "products": [
@@ -242,7 +262,7 @@
       "title": "AQ chính truyện",
       "author": "Lỗ Tấn",
       "price": 80750,
-      "inventory": 2,
+      "inventory": 1,
       "category": "aboard"
     },
     {
@@ -354,15 +374,5 @@
       "category": "vietNam"
     }
   ],
-  "cartProducts": [
-    {
-      "id": "e21230e0-10ba-4d30-8b97-6a2a594c8571",
-      "quantity": 1,
-      "userId": "91b610d0-290e-4a07-89c2-3c67ff0e904b",
-      "productId": "1",
-      "productPrice": 80750,
-      "productTitle": "AQ chính truyện",
-      "productInventory": 2
-    }
-  ]
+  "cartProducts": []
 }

@@ -7,6 +7,7 @@ import userSchema from "../validateSchema/userSchema";
 import { useNavigate } from "react-router-dom";
 import routes from "../routes";
 import { v4 as uuidv4 } from "uuid";
+import Loading from "../Components/Loading";
 export default function Payment() {
   const [receiver, setReceiver] = useState({
     name: "",
@@ -18,11 +19,14 @@ export default function Payment() {
   const loginUser = JSON.parse(window.localStorage.getItem("loginUser"));
   const navigate = useNavigate();
   const { userId } = useParams();
+  const[loading,setLoading] = useState(false)
   useEffect(() => {
     async function fetchUser() {
+      setLoading(true)
       const data = await axiosClient.get(
         `/users/${userId}?_embed=cartProducts`
       );
+      setLoading(false)
       setReceiver({
         ...receiver,
         name: data.userName,
@@ -35,6 +39,7 @@ export default function Payment() {
   }, [userId]);
   return (
     <div style={{ margin: "50px" }}>
+      {loading&&<Loading/>}
       <Header user={loginUser} />
       <div>
         <Formik

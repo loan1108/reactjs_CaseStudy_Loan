@@ -3,12 +3,16 @@ import axiosClient from "../api/axiosClient";
 import { useNavigate } from "react-router-dom";
 import Header from "../Components/Header";
 import routes from "../routes";
+import Loading from "../Components/Loading";
 export default function YourCart() {
   const [cartProducts, setCartProducts] = useState([]);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     async function fetchCartProducts() {
+      setLoading(true);
       const data = await axiosClient.get("/cartProducts?_expand=product");
+      setLoading(false);
       setCartProducts([...data]);
     }
     fetchCartProducts();
@@ -43,13 +47,16 @@ export default function YourCart() {
     );
     setCartProducts([...newCartsProduct]);
     async function deleteCartProduct() {
+      setLoading(true);
       await axiosClient.delete(`/cartProducts/${cartProduct.id}`);
     }
+    setLoading(false);
     deleteCartProduct();
   }
   return (
     <div style={{ margin: "50px" }}>
-      <Header user={loginUser}/>
+      {loading && <Loading />}
+      <Header user={loginUser} />
       <div>
         <h1>Giỏ hàng của bạn</h1>
         {total === 0 ? (
