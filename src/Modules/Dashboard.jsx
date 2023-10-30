@@ -5,78 +5,90 @@ import axiosClient from "../api/axiosClient";
 import { Link } from "react-router-dom";
 import routes from "../routes";
 import Loading from "../Components/Loading";
+import qs from 'query-string'
+
+
+
 export default function Dashboard() {
+
   const [products, setProducts] = useState([]);
-  const [searchProduct, setSearchProduct] = useState({ item: "" });
   const loginUser = JSON.parse(window.localStorage.getItem("loginUser"));
-  const [choosePage, setChoosePage] = useState(1);
-  const [chooseCategory, setChooseCategory] = useState("all");
-  const [totalPages, setTotalPages] = useState(null);
   const[loading, setLoading] = useState(false);
+
+  const [queryString, setQueryString] = useState({
+    _page: 1,
+    _limit: 10,
+    category_like: '',
+    q: ''
+  })
+
   useEffect(() => {
-    
-    fetchProducts();
-    fetchProductsByPage();
-    changeCategory();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [choosePage, chooseCategory]);
-  async function fetchProducts() {
-    setLoading(true)
-    const data = await axiosClient.get(`/products`);
-    setLoading(false)
-    setTotalPages(Math.ceil(data.length / 10));
-    setProducts([...data]);
-  }
-  function handleCategory(e) {
-    setChooseCategory(e.target.getAttribute("category"));
-  }
-  function changeCategory() {
-    if (chooseCategory === "all") {
-      fetchProducts();
-    } else {
-      async function fetchProductsByCategory() {
-        setLoading(true)
-        const data = await axiosClient.get(
-          `/products?category_like=${chooseCategory}`
-        );
-        setLoading(false)
-        setTotalPages(Math.ceil(data.length / 10));
-        setProducts([...data]);
+    async function fetchData() {
+      setLoading(true)
+      let data;
+      if (queryString.category_like !== 'all') {
+        data = await axiosClient.get(`/products?${qs.stringify(queryString)}`);
       }
-      fetchProductsByCategory();
+      else {
+        const filtered = {...queryString};
+        delete filtered.category_like;
+        console.log(filtered);
+        data = await axiosClient.get(`/products?${qs.stringify(filtered)}`);
+      }
+      
+      setLoading(false)
+      console.log(data)
+      totalPages = Math.ceil(data.length / 10);
+      console.log(totalPages)
+      setProducts([...data]);
     }
+
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [queryString._page, queryString._limit, queryString.category_like]);
+
+  let totalPages = 1;
+
+  function handleCategory(name) {
+    setQueryString({
+      ...queryString,
+      _page: 1,
+      category_like: name
+    })
   }
+
   function handleChange(e) {
-    setSearchProduct({ ...setProducts, [e.target.name]: e.target.value });
+    setQueryString({
+      ...queryString,
+      q: e.target.value
+    })
   }
+
   function handleSubmit(e) {
     e.preventDefault();
     async function fetchSearchProducts() {
       setLoading(true);
-      const data = await axiosClient.get(`/products?q=${searchProduct.item}`);
-     setLoading(false)
+      const data = await axiosClient.get(`/products?q=${queryString.q}&page=1&limit=10`);
+      setLoading(false)
       setProducts([...data]);
     }
     fetchSearchProducts();
   }
-  async function fetchProductsByPage() {
-    setLoading(true)
-    const data = await axiosClient.get(
-      `/products?_page=${choosePage}&_limit=10`
-    );
-    setLoading(false)
-    setProducts([...data]);
-  }
+
+
   function changePage(e) {
-    setChoosePage(+e.target.getAttribute("page"));
-    fetchProductsByPage();
+    setQueryString({
+      ...queryString,
+      _page: e.target.getAttribute("page")
+    })
   }
+
   function createPage() {
     const pages = [];
     for (let i = 1; i <= totalPages; i++) {
       pages.push(
         <li
-          className={`page-item ${choosePage === i ? "active" : ""}`}
+          className={`page-item ${queryString._page === i ? "active" : ""}`}
           style={{ cursor: "pointer" }}
           key={i}
         >
@@ -111,20 +123,18 @@ export default function Dashboard() {
               <li
                 style={{ cursor: "pointer" }}
                 className={`nav-item ${
-                  chooseCategory === "all" ? "active" : ""
+                  queryString.category_like === "all" ? "active" : ""
                 }`}
-                category="all"
-                onClick={handleCategory}
+                onClick={() => handleCategory('all')}
               >
                 Tất cả
               </li>
               <li
                 style={{ cursor: "pointer" }}
                 className={`nav-item ${
-                  chooseCategory === "aboard" ? "active" : ""
+                  queryString.category_like === "aboard" ? "active" : ""
                 }`}
-                category="aboard"
-                onClick={handleCategory}
+                onClick={() => handleCategory('aboard')}
               >
                 Văn học nước ngoài
               </li>
@@ -132,10 +142,9 @@ export default function Dashboard() {
               <li
                 style={{ cursor: "pointer" }}
                 className={`nav-item ${
-                  chooseCategory === "vietNam" ? "active" : ""
+                  queryString.category_like === "vietNam" ? "active" : ""
                 }`}
-                category="vietNam"
-                onClick={handleCategory}
+                onClick={() => handleCategory('vietNam')}
               >
                 Văn học Việt Nam
               </li>
@@ -144,7 +153,7 @@ export default function Dashboard() {
               <input
                 className="form-control mr-sm-2"
                 name="item"
-                value={searchProduct.item}
+                value={queryString.q}
                 type="search"
                 placeholder="Search"
                 aria-label="Search"
