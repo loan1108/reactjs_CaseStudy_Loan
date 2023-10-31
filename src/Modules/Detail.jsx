@@ -6,6 +6,7 @@ import axiosClient from "../api/axiosClient";
 import { useNavigate } from "react-router-dom";
 import routes from "../routes";
 import Loading from "../Components/Loading";
+import LoginRequest from "../Components/LoginRequest";
 export default function Detail() {
   const navigate = useNavigate();
   const { productId } = useParams();
@@ -87,87 +88,92 @@ export default function Detail() {
       updateCartProductList();
     }
   }
-  return (
-    <div style={{ margin: "50px" }}>
-      {loading&&<Loading/>}
-      <Header user={loginUser} />
-      <div className="container" style={{ height: "100px", marginTop: "50px" }}>
-        <div className="row">
-          <div className="col">
-            <img
-              src={product.image}
-              alt="product"
-              width="500px"
-              height="500px"
-            />
-          </div>
-          <div className="col">
-            <div>
-              <h3>{product.title}</h3>
-              <h5>{`Tác giả: ${product.author}`}</h5>
-            </div>
-            <div>
-              <p
-                style={
-                  quantity === product.inventory
-                    ? { color: "red" }
-                    : { color: "black" }
-                }
-              >{`Số lượng còn lại: ${product.inventory}`}</p>
-              <p
-                style={{ color: "#C92127", fontSize: "32px" }}
-              >{`Giá: ${product.price.toLocaleString()} VNĐ`}</p>
-            </div>
-            <div
-              className="btn-group"
-              role="group"
-              aria-label="Basic outlined example"
-            >
-              <button
-                type="button"
-                className="btn btn-outline-primary"
-                onClick={() => increaseQuantity()}
-              >
-                <i className="bi bi-plus"></i>
-              </button>
-              <input
-                type="button"
-                value={quantity}
-                min="0"
-                style={{
-                  backgroundColor: "white",
-                  color: "black",
-                  border: "none",
-                }}
+  if(!loginUser){
+    return <LoginRequest/>
+  }else{
+    return (
+      <div style={{ margin: "50px" }}>
+        {loading&&<Loading/>}
+        <Header user={loginUser} />
+        <div className="container" style={{ height: "100px", marginTop: "50px" }}>
+          <div className="row">
+            <div className="col">
+              <img
+                src={product.image}
+                alt="product"
+                width="500px"
+                height="500px"
               />
-              <button
-                type="button"
-                className="btn btn-outline-primary"
-                onClick={() => decreaseQuantity()}
-              >
-                <i className="bi bi-dash-lg"></i>
-              </button>
             </div>
-            <div style={{ marginTop: "30px" }}>
-              <button
-                type="button"
-                className={`btn btn-${
-                  product.inventory !== 0 ? "primary" : "warning"
-                }`}
-                style={
-                  product.inventory === 0
-                    ? { color: "red", fontWeight: "bold" }
-                    : { color: "black" }
-                }
-                disabled={quantity === 0 ? "disabled" : ""}
-                onClick={() => addToCart(product)}
+            <div className="col">
+              <div>
+                <h3>{product.title}</h3>
+                <h5>{`Tác giả: ${product.author}`}</h5>
+              </div>
+              <div>
+                <p
+                  style={
+                    quantity === product.inventory
+                      ? { color: "red" }
+                      : { color: "black" }
+                  }
+                >{`Số lượng còn lại: ${product.inventory}`}</p>
+                <p
+                  style={{ color: "#C92127", fontSize: "32px" }}
+                >{`Giá: ${product.price.toLocaleString()} VNĐ`}</p>
+              </div>
+              <div
+                className="btn-group"
+                role="group"
+                aria-label="Basic outlined example"
               >
-                {product.inventory !== 0 ? "Add to cart" : "Sold out"}
-              </button>
+                <button
+                  type="button"
+                  className="btn btn-outline-primary"
+                  onClick={() => increaseQuantity()}
+                >
+                  <i className="bi bi-plus"></i>
+                </button>
+                <input
+                  type="button"
+                  value={quantity}
+                  min="0"
+                  style={{
+                    backgroundColor: "white",
+                    color: "black",
+                    border: "none",
+                  }}
+                />
+                <button
+                  type="button"
+                  className="btn btn-outline-primary"
+                  onClick={() => decreaseQuantity()}
+                >
+                  <i className="bi bi-dash-lg"></i>
+                </button>
+              </div>
+              <div style={{ marginTop: "30px" }}>
+                <button
+                  type="button"
+                  className={`btn btn-${
+                    product.inventory !== 0 ? "primary" : "warning"
+                  }`}
+                  style={
+                    product.inventory === 0
+                      ? { color: "red", fontWeight: "bold" }
+                      : { color: "black" }
+                  }
+                  disabled={quantity === 0 ? "disabled" : ""}
+                  onClick={() => addToCart(product)}
+                >
+                  {product.inventory !== 0 ? "Add to cart" : "Sold out"}
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
+  
 }

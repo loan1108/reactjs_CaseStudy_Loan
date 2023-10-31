@@ -8,269 +8,87 @@
       "address": "Hà Nội"
     },
     {
-      "id": "91b610d0-290e-4a07-89c2-3c67ff0e904b",
+      "id": "2",
       "userName": "test_2",
       "address": "Cầu giấy, Hà nội",
       "password": "12345",
       "phone": 123242425
+    },
+    {
+      "id": "1dc3905f-2009-48f1-9009-a507beb291a1",
+      "userName": "test_3",
+      "address": "Thành phố Hồ Chí Minh ",
+      "password": "12345",
+      "phone": 12345678
     }
   ],
   "receivers": [
     {
-      "id": "79967ac8-563f-4029-8a4b-f6f3591611e9",
+      "id": "d51c6d7d-05ff-416d-b9a6-5b6735cb35d3",
       "userId": "1",
-      "boughtTime": "Sat, 21 Oct 2023 02:28:53 GMT",
-      "name": "Nguyễn Văn A",
-      "phone": "2424254",
-      "address": "Hà Nội",
-      "payment": "Tiền mặt",
-      "boughtProducts": [
-        {
-          "id": "361691d5-34da-4f7d-970a-5242d6dcb646",
-          "quantity": 1,
-          "userId": "1",
-          "productId": "1",
-          "productPrice": 80750,
-          "productTitle": "AQ chính truyện",
-          "productInventory": 2
-        }
-      ]
-    },
-    {
-      "id": "254423fe-bbdf-4928-8914-33b08305f571",
-      "userId": "1",
-      "boughtTime": "Tue, 24 Oct 2023 06:38:16 GMT",
+      "boughtTime": "Tue, 31 Oct 2023 07:57:12 GMT",
       "name": "test_1",
       "phone": "2424254",
       "address": "Hà Nội",
       "payment": "Tiền mặt",
       "boughtProducts": [
         {
-          "id": "d9f681ca-8ca2-42eb-bafe-b937c6ec8041",
+          "id": "36ed1b8f-640d-4004-9930-e250d320b3ab",
           "quantity": 1,
           "userId": "1",
-          "productId": "2",
-          "productPrice": 80750,
-          "productTitle": "Tuyển tập truyện ngắn Lỗ Tấn",
-          "productInventory": 7
-        }
-      ]
-    },
-    {
-      "id": "a5e3a767-a063-45b4-9bff-1f4590c35b8a",
-      "userId": "1",
-      "boughtTime": "Tue, 24 Oct 2023 07:56:49 GMT",
-      "name": "test_1",
-      "phone": "2424254",
-      "address": "Hà Nội",
-      "payment": "Tiền mặt",
-      "boughtProducts": [
-        {
-          "id": "9bd2b969-2145-4b20-9b9f-9c2ee8793818",
-          "quantity": 1,
-          "userId": "1",
-          "productId": "2",
-          "productPrice": 80750,
-          "productTitle": "Tuyển tập truyện ngắn Lỗ Tấn",
-          "productInventory": 6
-        },
-        {
-          "id": "a2106dc0-45b9-40fa-aa80-26d58b6bc51a",
-          "quantity": 1,
-          "userId": "1",
-          "productId": "6",
-          "productPrice": 64000,
-          "productTitle": "Tuổi thơ dữ dội",
-          "productInventory": 2
-        },
-        {
-          "id": "513cc365-24f4-4727-8685-2207921676ca",
-          "quantity": 1,
-          "userId": "1",
-          "productId": "1",
-          "productPrice": 80750,
-          "productTitle": "AQ chính truyện",
-          "productInventory": 5
-        }
-      ]
-    },
-    {
-      "id": "46a74460-4d25-45b1-8f9f-d900adfa7ec3",
-      "userId": "1",
-      "boughtTime": "Tue, 24 Oct 2023 08:01:06 GMT",
-      "name": "test_1",
-      "phone": "2424254",
-      "address": "Hà Nội",
-      "payment": "Tiền mặt",
-      "boughtProducts": [
-        {
-          "id": "885132d2-7f89-42d8-b9d7-10b455537a07",
-          "quantity": 1,
-          "userId": "1",
-          "productId": "2",
-          "productPrice": 80750,
-          "productTitle": "Tuyển tập truyện ngắn Lỗ Tấn",
-          "productInventory": 5
-        }
-      ]
-    },
-    {
-      "id": "47cc5d1c-4f70-41b3-96d8-9a6897548039",
-      "userId": "1",
-      "boughtTime": "Tue, 24 Oct 2023 08:17:22 GMT",
-      "name": "test_1",
-      "phone": "2424254",
-      "address": "Hà Nội",
-      "payment": "Tiền mặt",
-      "boughtProducts": [
-        {
-          "id": "e96b1adc-46ad-4c0e-9380-cd4b49ce69e6",
-          "quantity": 1,
-          "userId": "1",
-          "productId": "2",
-          "productPrice": 80750,
-          "productTitle": "Tuyển tập truyện ngắn Lỗ Tấn",
-          "productInventory": 4
-        }
-      ]
-    },
-    {
-      "id": "a4df3530-8833-4063-a30b-8af7869c2280",
-      "userId": "1",
-      "boughtTime": "Tue, 24 Oct 2023 08:59:22 GMT",
-      "name": "test_1",
-      "phone": "2424254",
-      "address": "Hà Nội",
-      "payment": "Tiền mặt",
-      "boughtProducts": [
-        {
-          "id": "c6cdec79-be26-4102-a7fa-0687ce6676b0",
-          "quantity": 1,
-          "userId": "1",
-          "productId": "4",
+          "productId": "3",
           "productPrice": 64600,
-          "productTitle": "Thiên quan tứ phúc",
-          "productInventory": 1
+          "productTitle": "Phê phán quốc dân tính",
+          "productInventory": 20
         }
       ]
     },
     {
-      "id": "7436a929-c0ae-4b5e-bbc1-647af56cad7c",
+      "id": "da71abf8-7434-47d4-b1ab-71bb67e0a229",
       "userId": "1",
-      "boughtTime": "Wed, 25 Oct 2023 02:20:25 GMT",
+      "boughtTime": "Tue, 31 Oct 2023 08:07:09 GMT",
       "name": "test_1",
       "phone": "2424254",
       "address": "Hà Nội",
       "payment": "Tiền mặt",
       "boughtProducts": [
         {
-          "id": "2b906fe1-daf0-4fd1-b789-00497e0a7679",
+          "id": "0ee136b0-195f-458f-86b0-1af5754e9c56",
           "quantity": 1,
           "userId": "1",
-          "productId": "1",
-          "productPrice": 80750,
-          "productTitle": "AQ chính truyện",
-          "productInventory": 5
-        }
-      ]
-    },
-    {
-      "id": "1351da7d-2821-4dfb-ae21-242cef923c97",
-      "userId": "1",
-      "boughtTime": "Wed, 25 Oct 2023 02:37:58 GMT",
-      "name": "test_1",
-      "phone": "2424254",
-      "address": "Hà Nội",
-      "payment": "Tiền mặt",
-      "boughtProducts": [
-        {
-          "id": "56b7750b-2c15-483e-9d0a-2fa6ba954f9b",
-          "quantity": 1,
-          "userId": "1",
-          "productId": "2",
-          "productPrice": 80750,
-          "productTitle": "Tuyển tập truyện ngắn Lỗ Tấn",
-          "productInventory": 3
-        }
-      ]
-    },
-    {
-      "id": "d9d157b7-b4a2-4881-a13a-aafd1a5318fa",
-      "userId": "91b610d0-290e-4a07-89c2-3c67ff0e904b",
-      "boughtTime": "Sat, 28 Oct 2023 06:53:52 GMT",
-      "name": "test_2",
-      "phone": 123242425,
-      "address": "Cầu giấy, Hà nội",
-      "payment": "Tiền mặt",
-      "boughtProducts": [
-        {
-          "id": "5b41f5d8-e54b-4c1c-aa21-604d9e53edf5",
-          "quantity": 1,
-          "userId": "91b610d0-290e-4a07-89c2-3c67ff0e904b",
-          "productId": "1",
-          "productPrice": 80750,
-          "productTitle": "AQ chính truyện",
-          "productInventory": 4
-        }
-      ]
-    },
-    {
-      "id": "00c69672-683a-4141-a80f-54e3f7097a37",
-      "userId": "91b610d0-290e-4a07-89c2-3c67ff0e904b",
-      "boughtTime": "Sat, 28 Oct 2023 08:19:47 GMT",
-      "name": "test_2",
-      "phone": 123242425,
-      "address": "Cầu giấy, Hà nội",
-      "payment": "Tiền mặt",
-      "boughtProducts": [
-        {
-          "id": "630c5194-25bb-4683-b32c-0fd4de2e019c",
-          "quantity": 1,
-          "userId": "91b610d0-290e-4a07-89c2-3c67ff0e904b",
-          "productId": "1",
-          "productPrice": 80750,
-          "productTitle": "AQ chính truyện",
-          "productInventory": 3
-        }
-      ]
-    },
-    {
-      "id": "3aad7c51-0d95-419b-9e5c-8e67c8bdad30",
-      "userId": "91b610d0-290e-4a07-89c2-3c67ff0e904b",
-      "boughtTime": "Mon, 30 Oct 2023 08:31:20 GMT",
-      "name": "test_2",
-      "phone": 123242425,
-      "address": "Cầu giấy, Hà nội",
-      "payment": "Tiền mặt",
-      "boughtProducts": [
-        {
-          "id": "e21230e0-10ba-4d30-8b97-6a2a594c8571",
-          "quantity": 1,
-          "userId": "91b610d0-290e-4a07-89c2-3c67ff0e904b",
-          "productId": "1",
-          "productPrice": 80750,
-          "productTitle": "AQ chính truyện",
+          "productId": "10",
+          "productPrice": 68850,
+          "productTitle": "Đất rừng phương Nam",
           "productInventory": 2
         }
       ]
     },
     {
-      "id": "5f8bfc97-4849-4d9f-9624-6415f0c10094",
-      "userId": "1",
-      "boughtTime": "Mon, 30 Oct 2023 12:46:26 GMT",
-      "name": "test_1",
-      "phone": "2424254",
-      "address": "Hà Nội",
+      "id": "a262ef0e-03ee-405b-9689-519487db38cc",
+      "userId": "1dc3905f-2009-48f1-9009-a507beb291a1",
+      "boughtTime": "Tue, 31 Oct 2023 08:12:27 GMT",
+      "name": "test_3",
+      "phone": 12345678,
+      "address": "Thành phố Hồ Chí Minh ",
       "payment": "Tiền mặt",
       "boughtProducts": [
         {
-          "id": "504e1fe8-9046-47c9-ad03-f889b369a988",
+          "id": "dbc67057-cf5d-456c-b1a2-40a0903db93a",
           "quantity": 1,
-          "userId": "1",
-          "productId": "11",
-          "productPrice": 46750,
-          "productTitle": "Lão Hạc",
-          "productInventory": 10
+          "userId": "1dc3905f-2009-48f1-9009-a507beb291a1",
+          "productId": "8",
+          "productPrice": 293200,
+          "productTitle": "Sapiens Lược Sử Loài Người",
+          "productInventory": 3
+        },
+        {
+          "id": "47640a51-b434-4cfe-ab43-468a874c179c",
+          "quantity": 1,
+          "userId": "1dc3905f-2009-48f1-9009-a507beb291a1",
+          "productId": "9",
+          "productPrice": 80000,
+          "productTitle": "Hoàng tử bé",
+          "productInventory": 1
         }
       ]
     }
@@ -282,7 +100,7 @@
       "title": "AQ chính truyện",
       "author": "Lỗ Tấn",
       "price": 80750,
-      "inventory": 1,
+      "inventory": 3,
       "category": "aboard"
     },
     {
@@ -291,7 +109,7 @@
       "title": "Tuyển tập truyện ngắn Lỗ Tấn",
       "author": "Lỗ Tấn",
       "price": 80750,
-      "inventory": 2,
+      "inventory": 5,
       "category": "aboard"
     },
     {
@@ -300,7 +118,7 @@
       "title": "Phê phán quốc dân tính",
       "author": "Lỗ Tấn",
       "price": 64600,
-      "inventory": 20,
+      "inventory": 19,
       "category": "aboard"
     },
     {
@@ -309,7 +127,7 @@
       "title": "Thiên quan tứ phúc",
       "author": "Mặc Hương Đồng Khứu",
       "price": 64600,
-      "inventory": 0,
+      "inventory": 5,
       "category": "aboard"
     },
     {
@@ -318,7 +136,7 @@
       "title": "Ma đạo tổ sư",
       "author": "Mặc Hương Đồng Khứu",
       "price": 64600,
-      "inventory": 2,
+      "inventory": 8,
       "category": "aboard"
     },
     {
@@ -336,7 +154,7 @@
       "title": "Điều Kỳ Diệu Của Tiệm Tạp Hóa Namiya",
       "author": "Higashino Keigo",
       "price": 56250,
-      "inventory": 2,
+      "inventory": 0,
       "category": "aboard"
     },
     {
@@ -345,7 +163,7 @@
       "title": "Sapiens Lược Sử Loài Người",
       "author": "Yuval Noah Harari",
       "price": 293200,
-      "inventory": 0,
+      "inventory": 2,
       "category": "aboard"
     },
     {
@@ -354,7 +172,7 @@
       "title": "Hoàng tử bé",
       "author": "Antoine de Saint-Exupéry",
       "price": 80000,
-      "inventory": 1,
+      "inventory": 0,
       "category": "aboard"
     },
     {
@@ -363,7 +181,7 @@
       "title": "Đất rừng phương Nam",
       "author": "Đoàn Giỏi",
       "price": 68850,
-      "inventory": 2,
+      "inventory": 1,
       "category": "vietNam"
     },
     {
@@ -394,5 +212,15 @@
       "category": "vietNam"
     }
   ],
-  "cartProducts": []
+  "cartProducts": [
+    {
+      "id": "411b7e8a-0d39-4c65-9028-3df26fedcd25",
+      "quantity": 0,
+      "userId": "1",
+      "productId": "11",
+      "productPrice": 46750,
+      "productTitle": "Lão Hạc",
+      "productInventory": 9
+    }
+  ]
 }
